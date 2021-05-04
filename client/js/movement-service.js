@@ -31,9 +31,13 @@ async function create(movement) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(movement),
+        
     });
 
+    window.alert("El movimiento se guardo con exito");
+
     return resp.json();
+
 }
 
 async function remove(movement) {

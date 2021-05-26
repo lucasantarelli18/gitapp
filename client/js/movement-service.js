@@ -53,6 +53,7 @@ async function remove(movement) {
 
     return new Promise(resolve => {
         resolve();
+        resp.json();
     });
 }
 

@@ -309,12 +309,16 @@ test('Eliminar un movimiento', async () => {
     expect(movement.category).toBe(movementData.category);
 
     const URL = `${baseURL}/movements/${movement.id}`;
+    const URLM = `${baseURL}/movements`;
     const req = await fetch(URL, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(movement),
     });
-
+    const reqm = await fetch(URLM);
+    const body = await reqm.json();
     expect(req.status).toBe(200);
+    expect(body.movements.length).toBe(0);
 });

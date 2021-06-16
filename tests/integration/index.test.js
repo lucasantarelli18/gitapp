@@ -209,6 +209,7 @@ test('Crear movimiento por api', async () => {
         amount: 50000.0,
         type: MovementType.INCOME,
         category: 'Sueldo',
+        description: 'Ingreso sueldo',
     };
 
     const URL = `${baseURL}/movements`;
@@ -226,6 +227,10 @@ test('Crear movimiento por api', async () => {
     expect(movements.rows[0].amount).toBe(movementData.amount);
     expect(movements.rows[0].type).toBe(movementData.type);
     expect(movements.rows[0].category).toBe(movementData.category);
+    expect(movements.rows[0].description).toBe(movementData.description);
+    
+
+    
 });
 
 test('Editar movimiento por api', async () => {

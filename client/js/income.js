@@ -34,7 +34,7 @@ async function init() {
 function getMovementData() {
     const formData = new FormData(refs.form.firstElementChild);
     const movement = Object.fromEntries(formData);
-    movement.type = "income"
+    movement.type = 'income';
     return movement;
 }
 
@@ -69,6 +69,11 @@ window.onRemove = async function () {
  * Guarda un movimiento
  **/
 window.onSave = async function (e) {
+    const form = document.getElementById('form');
+    if (!form.checkValidity()) {
+        console.error('Rellenar Campos');
+        return;
+    }
     e.stopPropagation();
     e.preventDefault();
     const movement = getMovementData();

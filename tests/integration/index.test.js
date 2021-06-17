@@ -328,13 +328,16 @@ test('Eliminar un movimiento', async () => {
     expect(movement.category).toBe(movementData.category);
 
     const URL = `${baseURL}/movements/${movement.id}`;
+    const URLM = `${baseURL}/movements`;
     const req = await fetch(URL, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(movement),
     });
-
+    const reqm = await fetch(URLM);
+    const body = await reqm.json();
     expect(req.status).toBe(200);
 });
 
@@ -430,3 +433,26 @@ test('Eliminar un movimiento', async () => {
     expect(req.status).toBe(200);
     expect(body.movements.length).toBe(0);
 }); 
+
+
+});
+
+// Campo description
+
+
+test('Crear movimiento con campo descripcion', async () => {
+    const movementData = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+        description: 'Ingreso sueldo',
+    };
+
+// Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+    expect(movement.description).toBe(movementData.description);
+
+
+});
+

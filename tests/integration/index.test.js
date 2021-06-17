@@ -320,6 +320,7 @@ test('Eliminar un movimiento', async () => {
     const reqm = await fetch(URLM);
     const body = await reqm.json();
     expect(req.status).toBe(200);
+    expect(body.movements.length).toBe(0);
 
 });
 
